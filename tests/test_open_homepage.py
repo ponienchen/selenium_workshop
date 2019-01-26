@@ -24,4 +24,3 @@ class TestOpenHomepage:
         self.homepage.type_in_what('developer')
         self.homepage.type_in_where('oakland, ca')
         self.homepage.find_jobs()
-        pass
