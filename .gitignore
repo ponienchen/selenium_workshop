@@ -1,1 +1,4 @@
 *.xml
+.idea/
+.python-version
+venv/
