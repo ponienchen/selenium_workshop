@@ -1,4 +1,6 @@
+from client.web_driver_client import WebDriverClient
 from pages.PageBase import PageBase
+from utils.config_loader import ConfigLoader
 
 
 class Homepage(PageBase):
@@ -6,7 +8,11 @@ class Homepage(PageBase):
     INPUT_WHAT = 'css=#text-input-what'
     INPUT_WHERE = 'css=#text-input-where'
     FIND_JOBS = 'css=.icl-WhatWhere-buttonWrapper button'
-    URL = 'https://www.indeed.com'
+
+    def __init__(self, env: str, webdriver_client: WebDriverClient):
+        super().__init__(webdriver_client)
+        self.config_loader = ConfigLoader()
+        self.base_url = self.config_loader.get_value(env, 'root')
 
     def type_in_what(self, text: str):
         web_element = self.webdriver_client.wait_until_visible(self.INPUT_WHAT)
@@ -21,7 +27,7 @@ class Homepage(PageBase):
         web_element.click()
 
     def open(self):
-        self.webdriver_client.open_page(self.URL)
+        self.webdriver_client.open_page(self.base_url)
         self.wait_until_all_required_elements_visible()
 
     def _required_elements(self) -> list:

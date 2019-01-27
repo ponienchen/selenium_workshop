@@ -5,12 +5,12 @@ from client.web_driver_client import WebDriverClient
 from pages.homepage import Homepage
 
 
-class TestOpenHomepage:
+class TestHomepage:
 
     @pytest.fixture(autouse=True)
-    def pre_test_setup(self, request: FixtureRequest):
+    def pre_test_setup(self, env: str, request: FixtureRequest):
         self.webdriver_client = WebDriverClient()
-        self.homepage = Homepage(self.webdriver_client)
+        self.homepage = Homepage(env, self.webdriver_client)
         request.addfinalizer(
             self.teardown
         )
@@ -19,7 +19,7 @@ class TestOpenHomepage:
         if hasattr(self, 'webdriver_client'):
             self.webdriver_client.quit()
 
-    def test_open_homepage(self):
+    def test_perform_search(self):
         self.homepage.open()
         self.homepage.type_in_what('developer')
         self.homepage.type_in_where('oakland, ca')
