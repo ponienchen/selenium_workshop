@@ -10,15 +10,11 @@ class Homepage(PageBase):
 
     def type_in_what(self, text: str):
         web_element = self.webdriver_client.wait_until_visible(self.INPUT_WHAT)
-        self.webdriver_client.execute_js('arguments[0].focus()', web_element)
-        self.webdriver_client.execute_js('arguments[0].value = ""', web_element)
-        web_element.send_keys(text)
+        self.clear_and_type(web_element, text)
 
     def type_in_where(self, text: str):
         web_element = self.webdriver_client.wait_until_visible(self.INPUT_WHERE)
-        self.webdriver_client.execute_js('arguments[0].focus()', web_element)
-        self.webdriver_client.execute_js('arguments[0].value = ""', web_element)
-        web_element.send_keys(text)
+        self.clear_and_type(web_element, text)
 
     def find_jobs(self):
         web_element = self.webdriver_client.wait_until_visible(self.FIND_JOBS)
