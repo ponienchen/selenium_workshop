@@ -19,7 +19,7 @@ class TestHomepage:
         if hasattr(self, 'webdriver_client'):
             self.webdriver_client.quit()
 
-    def test_perform_search(self):
+    def test_perform_one_super_basic_search_without_checking_search_results(self):
         self.homepage.open()
         self.homepage.type_in_what('developer')
         self.homepage.type_in_where('oakland, ca')
