@@ -22,7 +22,7 @@ class Homepage(PageBase):
         web_element = self.webdriver_client.wait_until_visible(self.INPUT_WHERE)
         self.clear_and_type(web_element, text)
 
-    def find_jobs(self):
+    def click_find_jobs_button(self):
         web_element = self.webdriver_client.wait_until_visible(self.FIND_JOBS)
         web_element.click()
 

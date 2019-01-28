@@ -23,4 +23,4 @@ class TestHomepage:
         self.homepage.open()
         self.homepage.type_in_what('developer')
         self.homepage.type_in_where('oakland, ca')
-        self.homepage.find_jobs()
+        self.homepage.click_find_jobs_button()
