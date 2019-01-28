@@ -21,7 +21,11 @@ class WebDriverClient:
             )
 
         self.webdriver = getattr(webdriver, BrowserNameParser.parse_browser_name(browser))(
-            service_args=WebDriverClientConstant.SERVICE_ARGS.get(browser)
+            service_args=(
+                WebDriverClientConstant.SERVICE_ARGS.get(browser)
+                if WebDriverClientConstant.ENABLE_LOGS
+                else None
+            )
         )
 
     def open_page(self, path: str):
