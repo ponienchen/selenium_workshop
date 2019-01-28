@@ -3,22 +3,26 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-from utils.helpers import SelectorParser
+from utils.constants import WebDriverClientConstant
+from utils.helpers import SelectorParser, BrowserNameParser
 
 
 class WebDriverClient:
 
-    SUPPORTED_BROWSERS = ['chrome']
-    TIMEOUT = 5  # in seconds
+    SUPPORTED_BROWSERS = WebDriverClientConstant.SUPPORTED_BROWSERS
+    TIMEOUT = WebDriverClientConstant.TIME_OUT
 
     def __init__(self, browser: str = 'chrome'):
+        browser = browser.lower()
         if browser not in self.SUPPORTED_BROWSERS:
             raise NotImplementedError(
                 f'ERROR: You are trying to use "{browser}", '
                 f'but currently only "{self.SUPPORTED_BROWSERS}" are supported.'
             )
 
-        self.webdriver = getattr(webdriver, browser.capitalize())()
+        self.webdriver = getattr(webdriver, BrowserNameParser.parse_browser_name(browser))(
+            service_args=WebDriverClientConstant.SERVICE_ARGS.get(browser)
+        )
 
     def open_page(self, path: str):
         self.webdriver.get(path)
