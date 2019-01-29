@@ -1,5 +1,5 @@
 from client.web_driver_client import WebDriverClient
-from pages.PageBase import PageBase
+from pages.page_base import PageBase
 from utils.config_loader import ConfigLoader
 
 
