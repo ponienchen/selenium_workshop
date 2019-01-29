@@ -11,3 +11,22 @@ class WebDriverClientConstant:
             f'--log-path={CHROME_DRIVER_LOG}'
         ]
     }
+
+
+class JobType:
+
+    JOBS = [
+        'qa',
+        'developer',
+        'driver',
+        'pilot'
+    ]
+
+
+class CityType:
+
+    CITIES = [
+        'San Francisco, CA',
+        'Oakland, CA',
+        'Fremont, CA'
+    ]

@@ -1,8 +1,11 @@
+import random
+
 import pytest
 from _pytest.fixtures import FixtureRequest
 
 from client.web_driver_client import WebDriverClient
 from pages.homepage import Homepage
+from utils.constants import JobType, CityType
 
 
 class TestHomepage:
@@ -21,6 +24,8 @@ class TestHomepage:
 
     def test_perform_one_super_basic_search_without_checking_search_results(self):
         self.homepage.open()
-        self.homepage.type_in_what('developer')
-        self.homepage.type_in_where('oakland, ca')
+        job = random.choice(JobType.JOBS)
+        city = random.choice(CityType.CITIES)
+        self.homepage.type_in_what(job)
+        self.homepage.type_in_where(city)
         self.homepage.click_find_jobs_button()
